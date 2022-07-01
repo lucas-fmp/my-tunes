@@ -33,7 +33,7 @@ class Login extends React.Component {
     createUser({ name: login }).then(() => this.setState({ isLogged: true }));
   }
 
-  naoLogado = () => {
+  checkingClick = () => {
     const { buttonClicked } = this.state;
     if (buttonClicked === true) {
       return (
@@ -64,7 +64,7 @@ class Login extends React.Component {
             Entrar
           </button>
           {
-            isLogged ? <Redirect to="/search" /> : this.naoLogado()
+            isLogged ? <Redirect to="/search" /> : this.checkingClick()
           }
         </form>
       </div>
