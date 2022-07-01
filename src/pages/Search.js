@@ -1,5 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
+import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import Loading from './Loading';
 
 class Search extends React.Component {
   constructor() {
@@ -7,6 +9,9 @@ class Search extends React.Component {
     this.state = {
       inputArtist: '',
       buttonState: true,
+      fetchComplete: false,
+      buttonClicked: false,
+      artist: '',
     };
   }
 
@@ -23,8 +28,29 @@ class Search extends React.Component {
     }
   }
 
+  onClick = () => {
+    this.setState({ buttonClicked: true });
+    const { inputArtist } = this.state;
+    searchAlbumsAPI(inputArtist).then(() => {
+      this.setState({
+        fetchComplete: true,
+        artist: inputArtist,
+        inputArtist: '',
+      });
+    });
+  }
+
+  checkingClick = () => {
+    const { buttonClicked } = this.state;
+    if (buttonClicked === true) {
+      return (
+        <Loading />
+      );
+    }
+  }
+
   render() {
-    const { inputArtist, buttonState } = this.state;
+    const { inputArtist, buttonState, fetchComplete, artist } = this.state;
     return (
       <div data-testid="page-search">
         <Header />
@@ -40,10 +66,19 @@ class Search extends React.Component {
             data-testid="search-artist-button"
             type="button"
             disabled={ buttonState }
+            onClick={ this.onClick }
           >
             Buscar
-
           </button>
+          {
+            fetchComplete ? (
+              <p>
+                Resultado de álbuns de:
+                {' '}
+                {artist}
+              </p>
+            ) : this.checkingClick()
+          }
         </form>
       </div>
     );
