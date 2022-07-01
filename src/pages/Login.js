@@ -1,5 +1,7 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
+import Loading from './Loading';
 
 class Login extends React.Component {
   constructor() {
@@ -7,6 +9,8 @@ class Login extends React.Component {
     this.state = {
       buttonState: true,
       login: '',
+      isLogged: false,
+      buttonClicked: false,
     };
   }
 
@@ -25,11 +29,21 @@ class Login extends React.Component {
 
   createUserAux = () => {
     const { login } = this.state;
-    createUser({ name: login });
+    this.setState({ buttonClicked: true });
+    createUser({ name: login }).then(() => this.setState({ isLogged: true }));
+  }
+
+  naoLogado = () => {
+    const { buttonClicked } = this.state;
+    if (buttonClicked === true) {
+      return (
+        <Loading />
+      );
+    }
   }
 
   render() {
-    const { buttonState, login } = this.state;
+    const { buttonState, login, isLogged } = this.state;
     return (
       <div data-testid="page-login">
         <form>
@@ -49,6 +63,9 @@ class Login extends React.Component {
           >
             Entrar
           </button>
+          {
+            isLogged ? <Redirect to="/search" /> : this.naoLogado()
+          }
         </form>
       </div>
     );
