@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Loading from './Loading';
@@ -12,6 +13,7 @@ class Search extends React.Component {
       fetchComplete: false,
       buttonClicked: false,
       artist: '',
+      data: [],
     };
   }
 
@@ -31,11 +33,12 @@ class Search extends React.Component {
   onClick = () => {
     this.setState({ buttonClicked: true });
     const { inputArtist } = this.state;
-    searchAlbumsAPI(inputArtist).then(() => {
+    searchAlbumsAPI(inputArtist).then((data) => {
       this.setState({
         fetchComplete: true,
         artist: inputArtist,
         inputArtist: '',
+        data,
       });
     });
   }
@@ -49,8 +52,44 @@ class Search extends React.Component {
     }
   }
 
+  checkingDataContent = () => {
+    const { data, artist } = this.state;
+    if (data.length === 0) {
+      return (
+        <p>Nenhum álbum foi encontrado</p>
+      );
+    }
+    return (
+      <h3>
+        Resultado de álbuns de:
+        {' '}
+        {artist}
+        <ul>
+          {data.map((element) => {
+            const {
+              artworkUrl100, artistName, collectionName, collectionId,
+            } = element;
+            return (
+              <Link
+                data-testid={ `link-to-album-${collectionId}` }
+                to={ `/album/${collectionId}` }
+                key={ collectionId }
+              >
+                <li>
+                  <img src={ artworkUrl100 } alt={ collectionName } />
+                  <h4>{collectionName}</h4>
+                  <h6>{artistName}</h6>
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+      </h3>
+    );
+  }
+
   render() {
-    const { inputArtist, buttonState, fetchComplete, artist } = this.state;
+    const { inputArtist, buttonState, fetchComplete } = this.state;
     return (
       <div data-testid="page-search">
         <Header />
@@ -71,13 +110,7 @@ class Search extends React.Component {
             Buscar
           </button>
           {
-            fetchComplete ? (
-              <p>
-                Resultado de álbuns de:
-                {' '}
-                {artist}
-              </p>
-            ) : this.checkingClick()
+            fetchComplete ? this.checkingDataContent() : this.checkingClick()
           }
         </form>
       </div>
