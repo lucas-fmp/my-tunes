@@ -35,6 +35,11 @@ class Album extends React.Component {
     });
   }
 
+  updateFavorites = async () => {
+    const favoriteSongs = await getFavoriteSongs();
+    this.setState({ favoriteSongs });
+  }
+
   render() {
     const { tracksInfo, artistInfo, isGettingFavoriteSongs, favoriteSongs } = this.state;
     const { artistName, collectionName } = artistInfo;
@@ -51,6 +56,7 @@ class Album extends React.Component {
                   key={ track.trackId }
                   track={ track }
                   favoriteSongs={ favoriteSongs }
+                  updateFavorites={ this.updateFavorites }
                 />
               ))
           )

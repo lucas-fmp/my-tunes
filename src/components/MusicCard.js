@@ -21,7 +21,7 @@ export default class MusicCard extends Component {
   }
 
   async onChange({ target }) {
-    const { track } = this.props;
+    const { track, updateFavorites } = this.props;
     const { isChecked } = this.state;
     const { checked } = target;
     await this.setState({ isSaving: true, isChecked: !isChecked });
@@ -32,6 +32,7 @@ export default class MusicCard extends Component {
       });
     } else {
       await removeSong(track);
+      await updateFavorites();
       await this.setState({ isSaving: false });
     }
   }
@@ -83,10 +84,11 @@ export default class MusicCard extends Component {
 }
 
 MusicCard.propTypes = {
-  favoriteSongs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  favoriteSongs: PropTypes.arrayOf(PropTypes.any).isRequired,
   track: PropTypes.shape({
     previewUrl: PropTypes.string.isRequired,
     trackId: PropTypes.number.isRequired,
     trackName: PropTypes.string.isRequired,
   }).isRequired,
+  updateFavorites: PropTypes.func.isRequired,
 };
