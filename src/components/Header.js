@@ -22,8 +22,6 @@ class Header extends React.Component {
       <header data-testid="header-component">
         {dataObj === '' ? <Loading /> : (
           <p data-testid="header-user-name">
-            Bem vindo,
-            {' '}
             {name}
           </p>)}
         <ul>
