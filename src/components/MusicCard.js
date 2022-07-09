@@ -8,11 +8,16 @@ export default class MusicCard extends Component {
     super();
 
     this.onChange = this.onChange.bind(this);
+    this.verifyingFavorite = this.verifyingFavorite.bind(this);
 
     this.state = {
       isSaving: false,
       isChecked: false,
     };
+  }
+
+  componentDidMount() {
+    this.verifyingFavorite();
   }
 
   async onChange({ target }) {
@@ -27,6 +32,17 @@ export default class MusicCard extends Component {
       });
     } else {
       await this.setState({ isSaving: false });
+    }
+  }
+
+  async verifyingFavorite() {
+    const { favoriteSongs, track } = this.props;
+    const verifyingFavorite = favoriteSongs
+      .filter((song) => song.trackName === track.trackName);
+    if (verifyingFavorite.length === 0) {
+      await this.setState({ isChecked: false });
+    } else {
+      await this.setState({ isChecked: true });
     }
   }
 
@@ -66,6 +82,7 @@ export default class MusicCard extends Component {
 }
 
 MusicCard.propTypes = {
+  favoriteSongs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   track: PropTypes.shape({
     previewUrl: PropTypes.string.isRequired,
     trackId: PropTypes.number.isRequired,

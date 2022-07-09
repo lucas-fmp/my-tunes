@@ -2,7 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import getMusics from '../services/musicsAPI';
+import Loading from './Loading';
 
 class Album extends React.Component {
   constructor() {
@@ -10,6 +12,8 @@ class Album extends React.Component {
     this.state = {
       tracksInfo: [],
       artistInfo: [],
+      favoriteSongs: [],
+      isGettingFavoriteSongs: true,
     };
   }
 
@@ -24,10 +28,15 @@ class Album extends React.Component {
       artistInfo,
       tracksInfo,
     });
+    const favoriteSongs = await getFavoriteSongs();
+    await this.setState({
+      favoriteSongs,
+      isGettingFavoriteSongs: false,
+    });
   }
 
   render() {
-    const { tracksInfo, artistInfo } = this.state;
+    const { tracksInfo, artistInfo, isGettingFavoriteSongs, favoriteSongs } = this.state;
     const { artistName, collectionName } = artistInfo;
     return (
       <div data-testid="page-album">
@@ -35,7 +44,16 @@ class Album extends React.Component {
         <h4 data-testid="artist-name">{artistName}</h4>
         <h6 data-testid="album-name">{collectionName}</h6>
         {
-          tracksInfo.map((track) => <MusicCard key={ track.trackId } track={ track } />)
+          isGettingFavoriteSongs ? <Loading /> : (
+            tracksInfo
+              .map((track) => (
+                <MusicCard
+                  key={ track.trackId }
+                  track={ track }
+                  favoriteSongs={ favoriteSongs }
+                />
+              ))
+          )
         }
       </div>
     );
