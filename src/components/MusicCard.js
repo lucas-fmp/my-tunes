@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Loading from '../pages/Loading';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, removeSong } from '../services/favoriteSongsAPI';
 
 export default class MusicCard extends Component {
   constructor() {
@@ -31,6 +31,7 @@ export default class MusicCard extends Component {
         isSaving: false,
       });
     } else {
+      await removeSong(track);
       await this.setState({ isSaving: false });
     }
   }
