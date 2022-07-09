@@ -34,7 +34,9 @@ class Album extends React.Component {
         <Header />
         <h4 data-testid="artist-name">{artistName}</h4>
         <h6 data-testid="album-name">{collectionName}</h6>
-        <MusicCard tracksInfo={ tracksInfo } />
+        {
+          tracksInfo.map((track) => <MusicCard key={ track.trackId } track={ track } />)
+        }
       </div>
     );
   }
