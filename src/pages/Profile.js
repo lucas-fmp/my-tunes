@@ -24,7 +24,6 @@ class Profile extends React.Component {
   render() {
     const { userData, isLoading } = this.state;
     const { name, email, image, description } = userData;
-    console.log(userData);
     return (
       <div data-testid="page-profile">
         <Header />
