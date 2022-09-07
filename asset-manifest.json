@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/my-tunes/static/css/main.4233856e.chunk.css",
-    "main.js": "/my-tunes/static/js/main.835f65f1.chunk.js",
-    "main.js.map": "/my-tunes/static/js/main.835f65f1.chunk.js.map",
+    "main.js": "/my-tunes/static/js/main.43ac279f.chunk.js",
+    "main.js.map": "/my-tunes/static/js/main.43ac279f.chunk.js.map",
     "runtime-main.js": "/my-tunes/static/js/runtime-main.1fcf6f00.js",
     "runtime-main.js.map": "/my-tunes/static/js/runtime-main.1fcf6f00.js.map",
-    "static/js/2.14b65e38.chunk.js": "/my-tunes/static/js/2.14b65e38.chunk.js",
-    "static/js/2.14b65e38.chunk.js.map": "/my-tunes/static/js/2.14b65e38.chunk.js.map",
+    "static/js/2.c32d550f.chunk.js": "/my-tunes/static/js/2.c32d550f.chunk.js",
+    "static/js/2.c32d550f.chunk.js.map": "/my-tunes/static/js/2.c32d550f.chunk.js.map",
     "index.html": "/my-tunes/index.html",
     "static/css/main.4233856e.chunk.css.map": "/my-tunes/static/css/main.4233856e.chunk.css.map",
-    "static/js/2.14b65e38.chunk.js.LICENSE.txt": "/my-tunes/static/js/2.14b65e38.chunk.js.LICENSE.txt",
+    "static/js/2.c32d550f.chunk.js.LICENSE.txt": "/my-tunes/static/js/2.c32d550f.chunk.js.LICENSE.txt",
     "static/media/heart-fill.e3f0a020.svg": "/my-tunes/static/media/heart-fill.e3f0a020.svg",
     "static/media/heart.27cf625b.svg": "/my-tunes/static/media/heart.27cf625b.svg",
     "static/media/my-tunes-logo-white.ecda6dec.png": "/my-tunes/static/media/my-tunes-logo-white.ecda6dec.png"
   },
   "entrypoints": [
     "static/js/runtime-main.1fcf6f00.js",
-    "static/js/2.14b65e38.chunk.js",
+    "static/js/2.c32d550f.chunk.js",
     "static/css/main.4233856e.chunk.css",
-    "static/js/main.835f65f1.chunk.js"
+    "static/js/main.43ac279f.chunk.js"
   ]
 }
