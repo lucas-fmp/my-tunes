@@ -31,7 +31,7 @@ class Header extends React.Component {
               <p className="name text-white" data-testid="header-user-name">
                 {name}
               </p>
-              <img src={ srcImage } alt="profile" className="rounded-circle" />
+              <img src={ srcImage } alt="profile" className="rounded-circle header-img" />
             </div>
           )}
         </div>

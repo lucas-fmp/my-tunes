@@ -1,0 +1,19 @@
+.profile-container {
+  background-color: #a9a9a9;
+}
+
+.profile-img {
+  max-width: 75%;
+}
+
+.profile-edit {
+  background-color: #a9a9a9;
+}
+
+.profile-edit, .profile-edit:visited {
+  color: #2e2e2e !important;
+}
+
+.profile-edit:hover, .profile-edit:active {
+  color: black !important;
+}

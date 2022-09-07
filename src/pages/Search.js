@@ -83,7 +83,7 @@ class Search extends React.Component {
                 data-testid={ `link-to-album-${collectionId}` }
                 to={ `/album/${collectionId}` }
                 key={ collectionId }
-                className="rounded-3 w-75 p-4 card my-3"
+                className="rounded-3 w-75 p-4 card my-3 text-decoration-none"
               >
                 <li>
                   <img

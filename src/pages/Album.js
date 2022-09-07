@@ -5,6 +5,7 @@ import MusicCard from '../components/MusicCard';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import getMusics from '../services/musicsAPI';
 import Loading from './Loading';
+import '../styles/album.css';
 
 class Album extends React.Component {
   constructor() {
@@ -44,23 +45,37 @@ class Album extends React.Component {
     const { tracksInfo, artistInfo, isGettingFavoriteSongs, favoriteSongs } = this.state;
     const { artistName, collectionName } = artistInfo;
     return (
-      <div data-testid="page-album">
+      <div data-testid="page-album" className="album-container">
         <Header />
-        <h4 data-testid="artist-name">{artistName}</h4>
-        <h6 data-testid="album-name">{collectionName}</h6>
-        {
-          isGettingFavoriteSongs ? <Loading /> : (
-            tracksInfo
-              .map((track) => (
-                <MusicCard
-                  key={ track.trackId }
-                  track={ track }
-                  favoriteSongs={ favoriteSongs }
-                  updateFavorites={ this.updateFavorites }
-                />
-              ))
-          )
-        }
+        <div className="text-center p-3 m-3 w-75 rounded-3 shadow-sm teste mx-auto">
+          <h4
+            data-testid="artist-name"
+            className="h4 text-black fw-bold m-2"
+          >
+            {artistName}
+          </h4>
+          <h6
+            data-testid="album-name"
+            className="h6 text-black fw-bold"
+          >
+            {collectionName}
+          </h6>
+        </div>
+        <div className="text-center">
+          {
+            isGettingFavoriteSongs ? <Loading /> : (
+              tracksInfo
+                .map((track) => (
+                  <MusicCard
+                    key={ track.trackId }
+                    track={ track }
+                    favoriteSongs={ favoriteSongs }
+                    updateFavorites={ this.updateFavorites }
+                  />
+                ))
+            )
+          }
+        </div>
       </div>
     );
   }

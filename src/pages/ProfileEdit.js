@@ -76,12 +76,16 @@ class ProfileEdit extends React.Component {
     } = this.state;
     if (redirect) return <Redirect exact to="/profile" />;
     return (
-      <div data-testid="page-profile-edit">
+      <div data-testid="page-profile-edit" className="text-center">
         <Header />
         {
-          isLoading ? <Loading /> : (
-            <form>
-              <label htmlFor={ name }>
+          isLoading ? (
+            <div className="container-fluid p-3 text-center">
+              <Loading />
+            </div>
+          ) : (
+            <form className="d-flex flex-column p-2 align-items-center">
+              <label htmlFor={ name } className="d-flex flex-column gap-1 p-2 w-75">
                 Nome
                 <input
                   data-testid="edit-input-name"
@@ -89,10 +93,10 @@ class ProfileEdit extends React.Component {
                   value={ name }
                   name="name"
                   onChange={ this.onChangeHandler }
+                  className="form-control d-block mx-auto"
                 />
               </label>
-              <br />
-              <label htmlFor={ email }>
+              <label htmlFor={ email } className="d-flex flex-column gap-1 p-2 w-75">
                 Email
                 <input
                   type="email"
@@ -101,10 +105,13 @@ class ProfileEdit extends React.Component {
                   value={ email }
                   name="email"
                   onChange={ this.onChangeHandler }
+                  className="form-control d-block mx-auto"
                 />
               </label>
-              <br />
-              <label htmlFor={ description }>
+              <label
+                htmlFor={ description }
+                className="d-flex flex-column gap-1 p-2 w-75"
+              >
                 Descrição
                 <input
                   data-testid="edit-input-description"
@@ -112,10 +119,10 @@ class ProfileEdit extends React.Component {
                   value={ description }
                   name="description"
                   onChange={ this.onChangeHandler }
+                  className="form-control d-block mx-auto"
                 />
               </label>
-              <br />
-              <label htmlFor={ image }>
+              <label htmlFor={ image } className="d-flex flex-column gap-1 p-2 w-75">
                 Imagem
                 <input
                   data-testid="edit-input-image"
@@ -123,14 +130,15 @@ class ProfileEdit extends React.Component {
                   value={ image }
                   name="image"
                   onChange={ this.onChangeHandler }
+                  className="form-control d-block mx-auto"
                 />
               </label>
-              <br />
               <button
                 data-testid="edit-button-save"
                 type="button"
                 disabled={ buttonState }
                 onClick={ this.onClick }
+                className="btn btn-light btn-block w-50 mt-3"
               >
                 Salvar alterações
               </button>

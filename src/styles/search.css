@@ -19,3 +19,11 @@
 .card {
   background-color: #8c8c8c;
 }
+
+.card, .card:visited {
+  color: #2e2e2e !important;
+}
+
+.card:hover, .card:active {
+  color: black !important;
+}

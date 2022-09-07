@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Loading from '../pages/Loading';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
+import heart from '../heart.svg';
+import filledHeart from '../heart-fill.svg';
 
 export default class MusicCard extends Component {
   constructor() {
@@ -53,30 +55,39 @@ export default class MusicCard extends Component {
     const { trackName, previewUrl, trackId } = track;
     const { isChecked, isSaving } = this.state;
     return (
-      <ul>
-        <li>
-          <p>{trackName}</p>
-          <audio data-testid="audio-component" src={ previewUrl } controls>
-            <track kind="captions" />
-            O seu navegador não suporta o elemento
-            <code>audio</code>
-          </audio>
-          {
-            isSaving ? <Loading /> : (
-              <label
-                data-testid={ `checkbox-music-${trackId}` }
-                htmlFor={ trackId }
-              >
-                Favorita
-                <input
-                  type="checkbox"
-                  id={ trackId }
-                  onChange={ this.onChange }
-                  checked={ isChecked }
-                />
-              </label>
-            )
-          }
+      <ul className="mt-3">
+        <li className="d-flex flex-column align-items-center p-2 gap-2">
+          <p className="fw-bold text-black">{trackName}</p>
+          <div className="d-flex align-items-center gap-2">
+            <audio data-testid="audio-component" src={ previewUrl } controls>
+              <track kind="captions" />
+              O seu navegador não suporta o elemento
+              <code>audio</code>
+            </audio>
+            {
+              isSaving ? <Loading /> : (
+                <label
+                  data-testid={ `checkbox-music-${trackId}` }
+                  htmlFor={ trackId }
+                >
+                  <input
+                    type="checkbox"
+                    id={ trackId }
+                    onChange={ this.onChange }
+                    checked={ isChecked }
+                    className="d-none"
+                  />
+                  {
+                    !isChecked ? (
+                      <img alt="heart" src={ heart } width={ 25 } />
+                    ) : (
+                      <img alt="filled-heart" src={ filledHeart } width={ 25 } />
+                    )
+                  }
+                </label>
+              )
+            }
+          </div>
         </li>
       </ul>
     );
