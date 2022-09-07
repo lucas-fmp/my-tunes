@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/app-toot-name/static/css/main.4233856e.chunk.css",
+    "main.js": "/app-toot-name/static/js/main.835f65f1.chunk.js",
+    "main.js.map": "/app-toot-name/static/js/main.835f65f1.chunk.js.map",
+    "runtime-main.js": "/app-toot-name/static/js/runtime-main.9d34ed3c.js",
+    "runtime-main.js.map": "/app-toot-name/static/js/runtime-main.9d34ed3c.js.map",
+    "static/js/2.14b65e38.chunk.js": "/app-toot-name/static/js/2.14b65e38.chunk.js",
+    "static/js/2.14b65e38.chunk.js.map": "/app-toot-name/static/js/2.14b65e38.chunk.js.map",
+    "index.html": "/app-toot-name/index.html",
+    "static/css/main.4233856e.chunk.css.map": "/app-toot-name/static/css/main.4233856e.chunk.css.map",
+    "static/js/2.14b65e38.chunk.js.LICENSE.txt": "/app-toot-name/static/js/2.14b65e38.chunk.js.LICENSE.txt",
+    "static/media/heart-fill.e3f0a020.svg": "/app-toot-name/static/media/heart-fill.e3f0a020.svg",
+    "static/media/heart.27cf625b.svg": "/app-toot-name/static/media/heart.27cf625b.svg",
+    "static/media/my-tunes-logo-white.ecda6dec.png": "/app-toot-name/static/media/my-tunes-logo-white.ecda6dec.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9d34ed3c.js",
+    "static/js/2.14b65e38.chunk.js",
+    "static/css/main.4233856e.chunk.css",
+    "static/js/main.835f65f1.chunk.js"
+  ]
+}
