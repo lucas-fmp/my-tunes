@@ -1,0 +1,21 @@
+.input-artist-container {
+  background-color: #2e2e2e;
+  height: 75px;
+}
+
+.page-search {
+  height: 100%;
+}
+
+.search-result-container {
+  background-color: #a9a9a9;
+  height: 100%;
+}
+
+.result-container {
+  background-color: #a9a9a9;
+}
+
+.card {
+  background-color: #8c8c8c;
+}

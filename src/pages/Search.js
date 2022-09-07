@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Loading from './Loading';
+import '../styles/search.css';
 
 class Search extends React.Component {
   constructor() {
@@ -47,7 +48,9 @@ class Search extends React.Component {
     const { buttonClicked } = this.state;
     if (buttonClicked === true) {
       return (
-        <Loading />
+        <div className="container-fluid p-3 text-center">
+          <Loading />
+        </div>
       );
     }
   }
@@ -56,15 +59,21 @@ class Search extends React.Component {
     const { data, artist } = this.state;
     if (data.length === 0) {
       return (
-        <p>Nenhum álbum foi encontrado</p>
+        <h4
+          className="pt-4 text-center h3 fw-bold"
+        >
+          Nenhum álbum foi encontrado.
+        </h4>
       );
     }
     return (
-      <h3>
-        Resultado de álbuns de:
-        {' '}
-        {artist}
-        <ul>
+      <div className="result-container d-flex flex-column text-center">
+        <h3 className="pt-4 text-center h3 fw-bold">
+          Resultado de álbuns de:
+          {' '}
+          {artist}
+        </h3>
+        <ul className="d-flex flex-column align-items-center">
           {data.map((element) => {
             const {
               artworkUrl100, artistName, collectionName, collectionId,
@@ -74,45 +83,55 @@ class Search extends React.Component {
                 data-testid={ `link-to-album-${collectionId}` }
                 to={ `/album/${collectionId}` }
                 key={ collectionId }
+                className="rounded-3 w-75 p-4 card my-3"
               >
                 <li>
-                  <img src={ artworkUrl100 } alt={ collectionName } />
-                  <h4>{collectionName}</h4>
-                  <h6>{artistName}</h6>
+                  <img
+                    src={ artworkUrl100 }
+                    alt={ collectionName }
+                    className="img-thumbnail img-fluid mt-2"
+                  />
+                  <h4 className="h4 pt-2">{collectionName}</h4>
+                  <h6 className="h6">{artistName}</h6>
                 </li>
               </Link>
             );
           })}
         </ul>
-      </h3>
+      </div>
     );
   }
 
   render() {
     const { inputArtist, buttonState, fetchComplete } = this.state;
     return (
-      <div data-testid="page-search">
+      <div data-testid="page-search" className="page-search">
         <Header />
-        <form>
+        <form className="input-artist-container container-fluid py-3 d-flex gap-1">
           <input
             name="inputArtist"
             type="text"
             data-testid="search-artist-input"
             onChange={ this.onChangeInput }
             value={ inputArtist }
+            className="form-control"
+            placeholder="Digite o nome do artista, música ou banda"
           />
           <button
             data-testid="search-artist-button"
             type="button"
             disabled={ buttonState }
             onClick={ this.onClick }
+            className="btn btn-light"
           >
             Buscar
           </button>
+        </form>
+        <div className="search-result-container">
           {
             fetchComplete ? this.checkingDataContent() : this.checkingClick()
           }
-        </form>
+        </div>
       </div>
     );
   }

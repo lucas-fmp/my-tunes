@@ -24,13 +24,14 @@ class Profile extends React.Component {
   render() {
     const { userData, isLoading } = this.state;
     const { name, email, image, description } = userData;
+    const srcImage = image !== '' ? image : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png';
     return (
       <div data-testid="page-profile">
         <Header />
         {
           isLoading ? <Loading /> : (
             <div>
-              <img data-testid="profile-image" src={ image } alt={ name } />
+              <img data-testid="profile-image" src={ srcImage } alt={ name } />
               <p>{name}</p>
               <p>{email}</p>
               <p>{description}</p>

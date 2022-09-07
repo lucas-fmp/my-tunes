@@ -1,0 +1,15 @@
+header {
+  background-color: #090c0e;
+}
+
+.name {
+  font-size: 1.2em;
+}
+
+.nav-link {
+  font-size: 1.2em;
+}
+
+.rounded-circle {
+  max-width: 50px;
+}

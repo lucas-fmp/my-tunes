@@ -3,7 +3,9 @@ import React from 'react';
 class Loading extends React.Component {
   render() {
     return (
-      <p>Carregando...</p>
+      <div className="spinner-border text-light" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
     );
   }
 }
